@@ -4,8 +4,19 @@ import dagshub
 from mlflow.tracking import MlflowClient
 
 # Initialize DagsHub
-dagshub.init(repo_owner='Sudip-8345', repo_name='CI_MLOPS', mlflow=True)
+# dagshub.init(repo_owner='Sudip-8345', repo_name='CI_MLOPS', mlflow=True)
+# mlflow.set_tracking_uri('https://dagshub.com/Sudip-8345/CI_MLOPS.mlflow')
+
+import os
+dagshub_token = os.getenv('DAGSHUB_TOKEN')
+if not dagshub_token:
+    raise EnvironmentError("DAGSHUB_TOKEN environment variable not set. Please set it to your DagsHub token.")
+os.environ['MLFLOW_TRACKING_USERNAME'] = dagshub_token
+os.environ['MLFLOW_TRACKING_PASSWORD'] = dagshub_token
+
 mlflow.set_tracking_uri('https://dagshub.com/Sudip-8345/CI_MLOPS.mlflow')
+# Set the experiment name in MLflow
+mlflow.set_experiment("Final_Model")
 
 def main():
     try:
