@@ -22,6 +22,6 @@ jobs:
 
       - name: Run tests
         env:
-          DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
+          DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }} # 9bc5b018ee4ce778bf76caffa32c099c3e50c817
         run: |
           dvc repro 
